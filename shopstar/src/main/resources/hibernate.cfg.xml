@@ -16,7 +16,9 @@
 <property name="show_sql">true</property>
 <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
 <property name="hibernate.format_sql">true</property>
-
+<mapping class="com.shopstar.entities.User" />
+<mapping class="com.shopstar.entities.Category" />
+<mapping class="com.shopstar.entities.Product" />
 
 </session-factory>
 </hibernate-configuration>
