@@ -8,7 +8,7 @@
 <%@include file="components/common_css_js.jsp" %>
 </head>
 <body>
-
+<%@include file="components/navbar.jsp" %>
 
 <h3>about</h3>
 </body>

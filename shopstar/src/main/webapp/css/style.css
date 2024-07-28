@@ -1,2 +1,7 @@
-@charset "ISO-8859-1";
-
+body{
+	background-color: black;
+}
+.custom-bg{
+	
+	background: #673ab7;
+}
