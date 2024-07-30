@@ -12,7 +12,7 @@
 
 <div class="container-fluid">
 <div class="row mt-5">
-<div class="col-md-4 offset-md-4">
+<div class="col-md-6 offset-md-3">
 <div class="card">
 <%@include file="components/message.jsp" %>
 <div class="card-body px-5">
