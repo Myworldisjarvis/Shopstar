@@ -13,6 +13,6 @@ if(msg!=null){
 	
 	
 <%
-session.removeAttribute("massage");
+session.removeAttribute("message");
 }
 %>
