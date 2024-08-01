@@ -142,6 +142,8 @@ body {
 
 
 	<div class="container mt-5">
+		<%@include file="components/message.jsp" %>
+	
 		<div class="row">
 			<!-- Number of Users -->
 			<div class="col-md-4 mb-4">
