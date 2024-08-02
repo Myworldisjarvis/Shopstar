@@ -1,3 +1,7 @@
+<%@page import="com.shopstar.entities.Category"%>
+<%@page import="java.util.List"%>
+<%@page import="com.shopstar.helper.FactoryProvide"%>
+<%@page import="com.shopstar.dao.CategoryDao"%>
 <%@page import="com.shopstar.entities.User"%>
 <%
 User user = (User) session.getAttribute("current_user");
@@ -134,6 +138,8 @@ body {
 .modal-footer {
 	border-top: 1px solid #444;
 }
+
+
 </style>
 
 </head>
@@ -227,7 +233,7 @@ body {
 					</button>
 				</div>
 				<div class="modal-body">
-					<form id="addProductForm">
+					<form id="addProductForm" action="ProductOperationServlet" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="operation" value="addproduct">
 						<div class="form-group">
 							<label for="productName">Product Name</label> <input type="text"
@@ -240,16 +246,45 @@ body {
 						</div>
 						<div class="form-group">
 							<label for="productPrice">Product Price</label> <input
-								placeholder="Enter Product Price" type="number" class="form-control" id="productPrice" required>
+								placeholder="Enter Product Price" name="pPrice" type="number" class="form-control" id="productPrice" required>
 						</div>
 						<div class="form-group">
 							<label for="productDiscount">Product Discount</label> <input
-								type="number" placeholder="Enter Product Discount" class="form-control" id="productDiscount" required>
+								type="number" name="pDisc" placeholder="Enter Product Discount" class="form-control" id="productDiscount" required>
 						</div>
 						<div class="form-group">
 							<label for="productQuan">Product Quantity</label> <input
-								type="number" placeholder="Enter Product Quantity" class="form-control" id="productQuan" required>
+								type="number" name="pQuan" placeholder="Enter Product Quantity" class="form-control" id="productQuan" required>
 						</div>
+						
+						
+						<!-- Product category -->
+						<!--  gating category from db-->
+						<%
+						
+						CategoryDao cdao = new CategoryDao(FactoryProvide.getFactory());
+							List<Category> categorys = cdao.getCategory();
+						
+						%>	
+						
+						<div class="form-group">
+							<label for="productCat">Product Category</label> 
+							<select name="catId" class="form-control" id="productCat" >
+							
+							<!-- dynamic data gating -->
+							<% for(Category c : categorys ) {%>
+							<option value="<%=c.getCategoryID() %>"><%=c.getCategoryTital() %></option>	
+							<% } %>
+							
+							</select>
+						</div>
+					
+						<div class="form-group">
+							<label for="productPic">Product Image</label> <input
+								type="file" name="pPic" placeholder="Enter Product Quantity" class="form-control" id="productPic" required>
+						</div>
+						
+						
 						<button type="submit" class="btn btn-primary btn-block">Add
 							Product</button>
 					</form>

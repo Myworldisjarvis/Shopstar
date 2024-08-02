@@ -20,11 +20,20 @@ private int pId;
  private int pPrice;
  private int pdiscount;
  private int pQuantity;
+ private String pPhoto;
  
- @ManyToOne
+@ManyToOne
  private Category category;
  
  
+
+
+public String getpPhoto() {
+	return pPhoto;
+}
+public void setpPhoto(String pPhoto) {
+	this.pPhoto = pPhoto;
+}
  
  
  
@@ -37,13 +46,20 @@ public Product(int pId, String pName, String pDisc, int pPrice, int pdiscount, i
 	this.pdiscount = pdiscount;
 	this.pQuantity = pQuantity;
 }
-public Product(String pName, String pDisc, int pPrice, int pdiscount, int pQuantity , Category category) {
+public Product(String pName, String pDisc, int pPrice, int pdiscount, int pQuantity , Category category , String pPhoto) {
 	super();
 	this.pName = pName;
 	this.pDisc = pDisc;
 	this.pPrice = pPrice;
 	this.pdiscount = pdiscount;
 	this.pQuantity = pQuantity;
+	this.category = category;
+	this.pPhoto = pPhoto;
+}
+public Category getCategory() {
+	return category;
+}
+public void setCategory(Category category) {
 	this.category = category;
 }
 public int getpId() {
