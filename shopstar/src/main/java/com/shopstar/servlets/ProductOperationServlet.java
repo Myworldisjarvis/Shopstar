@@ -1,6 +1,10 @@
 package com.shopstar.servlets;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -31,6 +35,7 @@ public class ProductOperationServlet extends HttpServlet {
 		
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 		PrintWriter out = response.getWriter();
@@ -82,9 +87,55 @@ public class ProductOperationServlet extends HttpServlet {
 		p.setCategory(categoryById);
 		
 		
-//		save product 
-		ProductDao pDao = new ProductDao(FactoryProvide.getFactory());
-		pDao.saveProduct(p);
+//		C://Users//names//git//Shopstar//shopstar//src//main//webapp//img//products
+//		/shopstar/src/main/webapp/img/products
+		
+		
+		String uploadPath = "C://Users//names//git//Shopstar//shopstar//src//main//webapp//img//products"; // Change this to your desired upload directory
+		File uploadDir = new File(uploadPath);
+		if (!uploadDir.exists()) uploadDir.mkdir();
+
+		String fileName = part.getSubmittedFileName();
+		String filePath = uploadPath + File.separator + fileName;
+		
+		try (FileOutputStream fos = new FileOutputStream(filePath); InputStream is = part.getInputStream()) {
+			byte[] buffer = new byte[1024];
+			int bytesRead = -1;
+			while ((bytesRead = is.read(buffer)) != -1) {
+				fos.write(buffer, 0, bytesRead);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+////		save product 
+//		ProductDao pDao = new ProductDao(FactoryProvide.getFactory());
+//		pDao.saveProduct(p);
+//		
+////		pic upload 
+////		find out the path to upload photo 
+//		String path = request.getRealPath("img")+File.separator+"products"+File.separator+part.getSubmittedFileName();
+//		System.out.println(path);
+//		
+////		uploading code
+//		try {
+//			FileOutputStream fos = new FileOutputStream(path);
+//			InputStream is = part.getInputStream();
+//			
+////			reding data 
+//			byte[] data = new byte[is.available()];
+//			is.read(data);
+//			
+////			writing the data 
+//			fos.write(data); 
+//			
+//			fos.close();
+//		} catch (Exception e) {
+//				e.printStackTrace();
+//		}
+				
+//		H:\Projects\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\shopstar\img
 		
 //		message send
 		HttpSession httpSession = request.getSession();
@@ -94,7 +145,7 @@ public class ProductOperationServlet extends HttpServlet {
 		
 		}
 
-
+ 
 
 }
 
