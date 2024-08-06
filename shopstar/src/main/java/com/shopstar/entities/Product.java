@@ -107,7 +107,12 @@ public Product() {
 	super();
 }
  
- 
+// calculate  price after discount
+
+public int getPriceAfterApplyingDiscount() {
+	int d = (int) ((this.getPdiscount() / 100.0) * this.getpPrice());		
+	return this.getpPrice()-d;
+}
  
  
 }

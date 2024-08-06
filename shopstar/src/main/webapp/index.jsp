@@ -39,6 +39,9 @@ body {
 	border-radius: 10px;
 	overflow: hidden;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 }
 
 .card img {
@@ -47,6 +50,7 @@ body {
 }
 
 .card-body {
+	flex-grow: 1;
 	padding: 1rem;
 }
 
@@ -113,7 +117,7 @@ body {
 	background-color: #444;
 	border: none;
 	transition: background-color 0.3s, box-shadow 0.3s;
-	padding: 10px 20px;
+	padding: 5px 10px;
 	border-radius: 6px;
 	font-size: 1.1rem;
 }
@@ -127,6 +131,13 @@ body {
 	outline: none;
 	box-shadow: 0 0 0 0.2rem rgba(85, 85, 85, 0.25);
 }
+.discount-lable{
+font-size: 13px!important;
+font-style: italic!important;
+text-decoration: line-through;
+}
+
+
 </style>
 </head>
 <body>
@@ -150,12 +161,12 @@ body {
 					list = dao.getAllProducts();
 				} else {
 					try {
-				int cid = Integer.parseInt(cat.trim());
-				list = dao.getAllProductsById(cid);
+						int cid = Integer.parseInt(cat.trim());
+						list = dao.getAllProductsById(cid);
 					} catch (NumberFormatException e) {
-				// Handle the case where cat is not a valid integer
-				// Provide some default behavior or an error message
-				list = new ArrayList<>(); // Or handle it according to your needs
+						// Handle the case where cat is not a valid integer
+						// Provide some default behavior or an error message
+						list = new ArrayList<>(); // Or handle it according to your needs
 					}
 				}
 			} catch (Exception e) {
@@ -196,8 +207,8 @@ body {
 					<%
 					for (Product p : list) {
 					%>
-					<div class="col-md-4 mb-4">
-						<div class="card">
+					<div class="col-md-4 mb-4 d-flex">
+						<div class="card w-100">
 							<div class="container text-center">
 								<img alt="<%=p.getpName()%>" class="card-img-top m-2"
 									src="img/products/<%=p.getpPhoto()%>"
@@ -207,10 +218,10 @@ body {
 								<h5 class="card-title"><%=p.getpName()%></h5>
 								<p class="card-text"><%=DescHelper.get10Words(p.getpDisc())%></p>
 							</div>
-							<div class="card-footer">
+							<div class="card-footer text-center">
 								<button class="btn btn-primary">Add to cart</button>
 								<button class="btn btn-outline-success">
-									&#8377;<%=p.getpPrice()%></button>
+									&#8377;<%=p.getPriceAfterApplyingDiscount()%>/- <span class="text-secondary discount-lable">&#8377;<%=p.getpPrice() %> , <%= p.getPdiscount()%>% off</span></button>
 							</div>
 						</div>
 					</div>

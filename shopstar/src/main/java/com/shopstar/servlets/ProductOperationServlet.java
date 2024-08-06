@@ -38,6 +38,8 @@ public class ProductOperationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+		
+		
 		PrintWriter out = response.getWriter();
 //		fatching category data
 		String op = request.getParameter("operation");
@@ -55,11 +57,16 @@ public class ProductOperationServlet extends HttpServlet {
 			out.println("category added");
 
 //		messegae send 
-
+			if (catId == -1) {
+				HttpSession httpSession = request.getSession();
+				httpSession.setAttribute("message", "Category already exists: " + category.getCategoryTital());
+				response.sendRedirect("admin.jsp");
+				return;
+			}else {
 			HttpSession httpSession = request.getSession();
 			httpSession.setAttribute("message", "Category added successfully : " + catId);
 			response.sendRedirect("admin.jsp");
-			return;
+			return;}
 		}
 
 //		add product 

@@ -1,6 +1,6 @@
 package com.shopstar.dao;
 
-import java.io.Serializable;
+
 import java.util.List;
 
 import org.hibernate.Session;
@@ -21,22 +21,31 @@ public class CategoryDao {
 	
 	
 	public int saveCategory(Category cat) {
-		int catId=0;
-		try {
-			
-			Session session = this.factory.openSession();
-			Transaction tx = session.beginTransaction();
-			
-			catId = (int) session.save(cat);
-			tx.commit();
-			session.close();
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return catId;
-	}
+        int catId = 0;
+        try {
+            Session session = this.factory.openSession();
+            Transaction tx = session.beginTransaction();
+
+            // Check if the category already exists
+            Query<Category> query = session.createQuery("from Category where categoryTital = :title", Category.class);
+            query.setParameter("title", cat.getCategoryTital());
+            List<Category> existingCategories = query.list();
+
+            if (existingCategories.isEmpty()) {
+                catId = (int) session.save(cat);
+                tx.commit();
+            } else {
+                // Category already exists, handle accordingly
+//                System.out.println("Category already exists: " + cat.getCategoryTital());
+            	return -1;
+            }
+            
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return catId;
+    }
 	
 	
 	public List<Category> getCategory(){
