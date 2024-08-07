@@ -131,12 +131,36 @@ body {
 	outline: none;
 	box-shadow: 0 0 0 0.2rem rgba(85, 85, 85, 0.25);
 }
-.discount-lable{
-font-size: 13px!important;
-font-style: italic!important;
-text-decoration: line-through;
+
+.discount-lable {
+	font-size: 13px !important;
+	font-style: italic !important;
+	text-decoration: line-through;
+}
+.message-box {
+    display: none; /* Initially hidden */
+    padding: 15px;
+    margin-bottom: 10px; /* Space between the message box and card footer */
+    border-radius: 6px;
+    background-color: #eaf4f4; /* Light background to make it stand out */
+    color: #333;
+    border: 1px solid #d0e8e8; /* Subtle border */
 }
 
+.message-box.success {
+    border-color: #c8e6c9; /* Green border for success messages */
+    background-color: #d4edda; /* Light green background */
+}
+
+.message-box.error {
+    border-color: #f8d7da; /* Red border for error messages */
+    background-color: #f8d7da; /* Light red background */
+}
+
+.message-box.info {
+    border-color: #d1ecf1; /* Blue border for info messages */
+    background-color: #d1ecf1; /* Light blue background */
+}
 
 </style>
 </head>
@@ -161,12 +185,12 @@ text-decoration: line-through;
 					list = dao.getAllProducts();
 				} else {
 					try {
-						int cid = Integer.parseInt(cat.trim());
-						list = dao.getAllProductsById(cid);
+				int cid = Integer.parseInt(cat.trim());
+				list = dao.getAllProductsById(cid);
 					} catch (NumberFormatException e) {
-						// Handle the case where cat is not a valid integer
-						// Provide some default behavior or an error message
-						list = new ArrayList<>(); // Or handle it according to your needs
+				// Handle the case where cat is not a valid integer
+				// Provide some default behavior or an error message
+				list = new ArrayList<>(); // Or handle it according to your needs
 					}
 				}
 			} catch (Exception e) {
@@ -184,7 +208,7 @@ text-decoration: line-through;
 				<div class="list-group mt-4">
 
 					<a href="index.jsp?category=all"
-						class="list-group-item list-group-item-action <%= (cat == null || cat.equals("all")) ? "active" : "" %>">All
+						class="list-group-item list-group-item-action <%=(cat == null || cat.equals("all")) ? "active" : ""%>">All
 						Products</a>
 
 					<%
@@ -192,7 +216,7 @@ text-decoration: line-through;
 					%>
 
 					<a href="index.jsp?category=<%=category.getCategoryID()%>"
-						class="list-group-item list-group-item-action <%= (cat != null && cat.equals(String.valueOf(category.getCategoryID()))) ? "active" : "" %>"><%=category.getCategoryTital()%></a>
+						class="list-group-item list-group-item-action <%=(cat != null && cat.equals(String.valueOf(category.getCategoryID()))) ? "active" : ""%>"><%=category.getCategoryTital()%></a>
 
 					<%
 					}
@@ -209,19 +233,30 @@ text-decoration: line-through;
 					%>
 					<div class="col-md-4 mb-4 d-flex">
 						<div class="card w-100">
+						
+							<!-- Message box to show alerts -->
+							<%-- <div id="message-box-<%=p.getpId()%>" class="message-box"></div> --%>
+							
 							<div class="container text-center">
 								<img alt="<%=p.getpName()%>" class="card-img-top m-2"
 									src="img/products/<%=p.getpPhoto()%>"
 									style="max-height: 200px; max-width: 100%; width: auto;">
 							</div>
 							<div class="card-body">
+							<div id="message-box-<%=p.getpId()%>" class="message-box"></div>
 								<h5 class="card-title"><%=p.getpName()%></h5>
 								<p class="card-text"><%=DescHelper.get10Words(p.getpDisc())%></p>
 							</div>
 							<div class="card-footer text-center">
-								<button class="btn btn-primary">Add to cart</button>
+								<button class="btn btn-primary"
+									onclick="add_to_cart( <%=p.getpId()%> ,'<%=p.getpName().replace("'", "\\'")%>',<%=p.getPriceAfterApplyingDiscount()%> , <%=p.getpQuantity()%>)">Add
+									to cart</button>
 								<button class="btn btn-outline-success">
-									&#8377;<%=p.getPriceAfterApplyingDiscount()%>/- <span class="text-secondary discount-lable">&#8377;<%=p.getpPrice() %> , <%= p.getPdiscount()%>% off</span></button>
+									&#8377;<%=p.getPriceAfterApplyingDiscount()%>/- <span
+										class="text-secondary discount-lable">&#8377; <%=p.getpPrice()%>
+										, <%=p.getPdiscount()%>% off
+									</span>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -235,8 +270,8 @@ text-decoration: line-through;
 							<h1>No Items Available</h1>
 							<p>Sorry, there are no items in this category at the moment.
 								Please check back later or browse other categories.</p>
-							<a href="index.jsp?category=all" class="btn btn-primary mt-3">Browse Other
-								Categories</a>
+							<a href="index.jsp?category=all" class="btn btn-primary mt-3">Browse
+								Other Categories</a>
 						</div>
 					</div>
 					<%
