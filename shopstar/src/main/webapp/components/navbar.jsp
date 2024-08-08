@@ -3,7 +3,7 @@
 User usertype = (User) session.getAttribute("current_user");
 %>
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="container">
 		<a class="navbar-brand" href="index.jsp">Shop-Star</a>
@@ -33,7 +33,11 @@ User usertype = (User) session.getAttribute("current_user");
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
-
+					
+					<li class="nav-item active"><a class="nav-link" href="#" data-toggle="modal" data-target="#cart">
+					 <i class="fa fa-cart-plus" style="font-size: 16px;"></i><span class="ml-1 cart-items" >(0)</span>
+					 </a> 
+					 </li>
 
 				<%
 				if (usertype == null) {
