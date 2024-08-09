@@ -12,6 +12,8 @@
 <title>Welcome to ShopStar</title>
 <!--  css -->
 <%@include file="components/common_css_js.jsp"%>
+<%@include file="components/commondata.jsp"%>
+
 <style>
 body {
 	background-color: #f8f9fa;
@@ -232,10 +234,10 @@ body {
 					for (Product p : list) {
 					%>
 					<div class="col-md-4 mb-4 d-flex" >
-						<div class="card w-100" id="card-<%=p.getpId()%>">
+						<div class="card w-100">
 						
 							<!-- Message box to show alerts -->
-							 <div id="message-box-<%=p.getpId()%>" class="message-box"></div>
+							<%--  <div id="message-box-<%=p.getpId()%>" class="message-box"></div> --%>
 							
 							<div class="container text-center">
 								<img alt="<%=p.getpName()%>" class="card-img-top m-2"
