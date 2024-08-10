@@ -1,3 +1,15 @@
+<%
+/* check if user login or not then show checkout page */
+User user = (User) session.getAttribute("current_user");
+if (user == null) {
+	session.setAttribute("message", "You are not logged in !! Login first to access checkout page");
+	response.sendRedirect("login.jsp");
+	return;
+}
+
+
+%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -105,32 +117,32 @@ body {
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="firstName">First Name</label> <input type="text"
-										class="form-control" id="firstName" placeholder="John"
+										class="form-control" id="firstName" placeholder="Sadaf"
 										required>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="lastName">Last Name</label> <input type="text"
-										class="form-control" id="lastName" placeholder="Doe" required>
+										class="form-control" id="lastName" placeholder="Hussain" required>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email">Email Address</label> <input type="email"
+								<label for="email">Email Address</label> <input type="email" value="<%=user.getUserEmail() %>"
 									class="form-control" id="email"
-									placeholder="johndoe@example.com" required>
+									placeholder="shopstar@example.com" required>
 							</div>
 							<div class="form-group">
-								<label for="phone">Phone Number</label> <input type="tel"
-									class="form-control" id="phone" placeholder="+1 (555) 123-4567"
+								<label for="phone">Phone Number</label> <input type="tel" value="<%=user.getUserPhone() %>"
+									class="form-control" id="phone" placeholder="+91 (798) 783-4567"
 									required>
 							</div>
 							<div class="form-group">
-								<label for="address">Address</label> <input type="text"
-									class="form-control" id="address" placeholder="1234 Main St"
+								<label for="address">Address</label> <input type="text" value="<%=user.getUserAddress()%>"
+									class="form-control" id="address" placeholder="1234 Main Street"
 									required>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="city">City</label> <input type="text"
+									<label for="city">City</label> <input type="text" 
 										class="form-control" id="city" placeholder="City" required>
 								</div>
 								<div class="form-group col-md-4">
@@ -144,6 +156,7 @@ body {
 							</div>
 							<button type="submit" class="btn btn-custom btn-block">Submit
 								Order</button>
+								<button type="" class="btn btn-custom btn-block">Continue Shoping </button>
 						</form>
 					</div>
 				</div>

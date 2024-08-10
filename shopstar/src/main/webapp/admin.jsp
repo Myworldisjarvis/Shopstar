@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="com.shopstar.helper.DescHelper"%>
 <%@page import="com.shopstar.entities.Category"%>
 <%@page import="java.util.List"%>
 <%@page import="com.shopstar.helper.FactoryProvide"%>
@@ -17,6 +19,19 @@ if (user == null) {
 	}
 
 }
+%>
+
+<!-- Product category -->
+<!--  gating category from db-->
+<%
+CategoryDao cdao = new CategoryDao(FactoryProvide.getFactory());
+List<Category> categorys = cdao.getCategory();
+
+//gatting count product and user
+Map<String ,Long> m = DescHelper.getCounts(FactoryProvide.getFactory());
+
+
+
 %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -138,8 +153,6 @@ body {
 .modal-footer {
 	border-top: 1px solid #444;
 }
-
-
 </style>
 
 </head>
@@ -148,8 +161,8 @@ body {
 
 
 	<div class="container mt-5">
-		<%@include file="components/message.jsp" %>
-	
+		<%@include file="components/message.jsp"%>
+
 		<div class="row">
 			<!-- Number of Users -->
 			<div class="col-md-4 mb-4">
@@ -159,7 +172,7 @@ body {
 						<h5>Number of Users</h5>
 					</div>
 					<div class="card-body">
-						<h3 class="counter" id="userCount">0</h3>
+						<h3 class="counter" id="userCount"><%=m.get("userCount") %></h3>
 					</div>
 				</div>
 			</div>
@@ -172,7 +185,7 @@ body {
 						<h5>Number of Products</h5>
 					</div>
 					<div class="card-body">
-						<h3 class="counter" id="productCount">0</h3>
+						<h3 class="counter" id="productCount"><%=m.get("productCount") %></h3>
 					</div>
 				</div>
 			</div>
@@ -185,7 +198,7 @@ body {
 						<h5>Number of Categories</h5>
 					</div>
 					<div class="card-body">
-						<h3 class="counter" id="categoryCount">0</h3>
+						<h3 class="counter" id="categoryCount"><%=categorys.size() %></h3>
 					</div>
 				</div>
 			</div>
@@ -233,11 +246,13 @@ body {
 					</button>
 				</div>
 				<div class="modal-body">
-					<form id="addProductForm" action="ProductOperationServlet" method="post" enctype="multipart/form-data">
-					<input type="hidden" name="operation" value="addproduct">
+					<form id="addProductForm" action="ProductOperationServlet"
+						method="post" enctype="multipart/form-data">
+						<input type="hidden" name="operation" value="addproduct">
 						<div class="form-group">
 							<label for="productName">Product Name</label> <input type="text"
-							 	class="form-control" placeholder="Enter Product Name" name="pName" id="productName" required>
+								class="form-control" placeholder="Enter Product Name"
+								name="pName" id="productName" required>
 						</div>
 						<div class="form-group">
 							<label for="productDesc">Product Description</label>
@@ -246,45 +261,46 @@ body {
 						</div>
 						<div class="form-group">
 							<label for="productPrice">Product Price</label> <input
-								placeholder="Enter Product Price" name="pPrice" type="number" class="form-control" id="productPrice" required>
+								placeholder="Enter Product Price" name="pPrice" type="number"
+								class="form-control" id="productPrice" required>
 						</div>
 						<div class="form-group">
 							<label for="productDiscount">Product Discount</label> <input
-								type="number" name="pDisc" placeholder="Enter Product Discount" class="form-control" id="productDiscount" required>
+								type="number" name="pDisc" placeholder="Enter Product Discount"
+								class="form-control" id="productDiscount" required>
 						</div>
 						<div class="form-group">
 							<label for="productQuan">Product Quantity</label> <input
-								type="number" name="pQuan" placeholder="Enter Product Quantity" class="form-control" id="productQuan" required>
+								type="number" name="pQuan" placeholder="Enter Product Quantity"
+								class="form-control" id="productQuan" required>
 						</div>
-						
-						
-						<!-- Product category -->
-						<!--  gating category from db-->
-						<%
-						
-						CategoryDao cdao = new CategoryDao(FactoryProvide.getFactory());
-							List<Category> categorys = cdao.getCategory();
-						
-						%>	
-						
+
+
+						// yaha ki category uper kar di gyi hai
+
 						<div class="form-group">
-							<label for="productCat">Product Category</label> 
-							<select name="catId" class="form-control" id="productCat" >
-							
-							<!-- dynamic data gating -->
-							<% for(Category c : categorys ) {%>
-							<option value="<%=c.getCategoryID() %>"><%=c.getCategoryTital() %></option>	
-							<% } %>
-							
+							<label for="productCat">Product Category</label> <select
+								name="catId" class="form-control" id="productCat">
+
+								<!-- dynamic data gating -->
+								<%
+								for (Category c : categorys) {
+								%>
+								<option value="<%=c.getCategoryID()%>"><%=c.getCategoryTital()%></option>
+								<%
+								}
+								%>
+
 							</select>
 						</div>
-					
+
 						<div class="form-group">
-							<label for="productPic">Product Image</label> <input
-								type="file" name="pPic" placeholder="Enter Product Quantity" class="form-control" id="productPic" required>
+							<label for="productPic">Product Image</label> <input type="file"
+								name="pPic" placeholder="Enter Product Quantity"
+								class="form-control" id="productPic" required>
 						</div>
-						
-						
+
+
 						<button type="submit" class="btn btn-primary btn-block">Add
 							Product</button>
 					</form>
@@ -307,11 +323,13 @@ body {
 					</button>
 				</div>
 				<div class="modal-body">
-					<form id="addCategoryForm" action="ProductOperationServlet" method="post">
-					<input type="hidden" name="operation" value="addcategory">
+					<form id="addCategoryForm" action="ProductOperationServlet"
+						method="post">
+						<input type="hidden" name="operation" value="addcategory">
 						<div class="form-group">
 							<label for="categoryName">Category Name</label> <input
-								name="catTitle" type="text" placeholder="Enter Category Name" class="form-control" id="categoryName" required>
+								name="catTitle" type="text" placeholder="Enter Category Name"
+								class="form-control" id="categoryName" required>
 						</div>
 						<div class="form-group">
 							<label for="productDesc">Product Description</label>
@@ -368,9 +386,9 @@ body {
 	<!-- JavaScript for Counter Animation -->
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
-			const userCount = 50; // Example value
-			const productCount = 120; // Example value
-			const categoryCount = 10; // Example value
+			const userCount = <%=m.get("userCount") %>; // Example value
+			const productCount = <%=m.get("productCount") %>; // Example value
+			const categoryCount = <%=categorys.size() %>; // Example value
 
 			const counters = {
 				userCount : userCount,

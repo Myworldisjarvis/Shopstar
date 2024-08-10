@@ -51,7 +51,7 @@ User usertype = (User) session.getAttribute("current_user");
 				} else {
 				%>
 				<li class="nav-item active"><a class="nav-link"
-					href="#!"><%= usertype.getUserName()%></a></li>
+					href="<%= usertype.getUserType().equals("admin")?"admin.jsp":"user.jsp"%>"><%= usertype.getUserName()%></a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="LogoutServlet">Logout</a></li>
 				<%
