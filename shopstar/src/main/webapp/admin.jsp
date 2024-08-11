@@ -40,7 +40,7 @@ Map<String ,Long> m = DescHelper.getCounts(FactoryProvide.getFactory());
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Admin-Panel</title>
 <%@include file="components/common_css_js.jsp"%>
 <!-- Google Fonts -->
 <link
@@ -166,7 +166,7 @@ body {
 		<div class="row">
 			<!-- Number of Users -->
 			<div class="col-md-4 mb-4">
-				<div class="card text-center">
+				<div class="card text-center" data-toggle="tooltip" data-placement="top" title="Number of user in this wesite">
 					<div class="card-header">
 						<i class="fas fa-users icon"></i>
 						<h5>Number of Users</h5>
@@ -179,7 +179,7 @@ body {
 
 			<!-- Number of Products -->
 			<div class="col-md-4 mb-4">
-				<div class="card text-center">
+				<div class="card text-center" data-toggle="tooltip" data-placement="top" title="Number of products in this wesite">
 					<div class="card-header">
 						<i class="fas fa-boxes icon"></i>
 						<h5>Number of Products</h5>
@@ -192,7 +192,7 @@ body {
 
 			<!-- Number of Categories -->
 			<div class="col-md-4 mb-4">
-				<div class="card text-center">
+				<div class="card text-center" data-toggle="tooltip" data-placement="top" title="Number of categorys in this wesite">
 					<div class="card-header">
 						<i class="fas fa-list-alt icon"></i>
 						<h5>Number of Categories</h5>
@@ -231,7 +231,35 @@ body {
 				</div>
 			</div>
 		</div>
-	</div>
+	
+	<div class="row">
+    <!-- View All Products -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>View All Products</h5>
+            </div>
+            <div class="card-body">
+                <a href="viewAllProducts.jsp" class="btn btn-primary btn-block">View All Products</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- View All Categories -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>View All Categories</h5>
+            </div>
+            <div class="card-body">
+                <a href="viewAllCategories.jsp" class="btn btn-primary btn-block">View All Categories</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
 
 	<!-- Add Product Modal -->
 	<div class="modal fade" id="addProductModal" tabindex="-1"
@@ -276,7 +304,7 @@ body {
 						</div>
 
 
-						// yaha ki category uper kar di gyi hai
+						<!--  yaha ki category uper kar di gyi hai -->
 
 						<div class="form-group">
 							<label for="productCat">Product Category</label> <select
@@ -437,6 +465,10 @@ body {
 				}
 			});
 		});
+		
+		$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			})
 	</script>
 
 </body>

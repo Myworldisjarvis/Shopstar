@@ -28,6 +28,18 @@
   	<description></description>
   	<servlet-class>com.shopstar.servlets.ProductOperationServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>deleteAndUpdateProductServlet</servlet-name>
+  	<display-name>deleteAndUpdateProductServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.shopstar.servlets.DeleteProductServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UpdateProductServlet</servlet-name>
+  	<display-name>UpdateProductServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.shopstar.servlets.UpdateProductServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterServlet</servlet-name>
   	<url-pattern>/RegisterServlet</url-pattern>
@@ -43,5 +55,13 @@
   <servlet-mapping>
   	<servlet-name>ProductOperationServlet</servlet-name>
   	<url-pattern>/ProductOperationServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>deleteAndUpdateProductServlet</servlet-name>
+  	<url-pattern>/deleteAndUpdateProductServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateProductServlet</servlet-name>
+  	<url-pattern>/UpdateProductServlet</url-pattern>
   </servlet-mapping>
 </web-app>
