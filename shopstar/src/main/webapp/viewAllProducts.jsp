@@ -259,6 +259,12 @@ body.vprod-body {
 .vprod-text-center {
 	text-align: center;
 }
+
+.vprod-image {
+	width: 80px;
+	height: auto;
+	border-radius: 5px;
+}
 </style>
 </head>
 <body class="vprod-body">
@@ -272,7 +278,9 @@ body.vprod-body {
 				<thead class="vprod-thead">
 					<tr>
 						<th>#</th>
+						<th>Product Image</th>
 						<th>Product Name</th>
+						<th>Category</th>
 						<th>Description</th>
 						<th>Price</th>
 						<th>Quantity</th>
@@ -283,23 +291,24 @@ body.vprod-body {
 				<tbody class="vprod-tbody">
 					<%
 					for (Product product : products) {
+						Category category = cdao.getCategoryById(product.getCategory().getCategoryID());
 					%>
 					<tr>
 						<td>SHTECH<%=product.getpId()%></td>
+						<td><img src="img/products/<%=product.getpPhoto()%>"
+							alt="<%=product.getpName()%>" class="vprod-image"></td>
 						<td><%=product.getpName()%></td>
+						<td><%=category.getCategoryTital()%></td>
 						<td><%=product.getpDisc()%></td>
 						<td>&#8377;<%=product.getpPrice()%></td>
 						<td><%=product.getpQuantity()%></td>
 						<td><%=product.getPdiscount()%>%</td>
 						<td>
 							<div class="vprod-action-buttons">
-
 								<a href="UpdateProductServlet?id=<%=product.getpId()%>"
-									class="vprod-btn vprod-btn-warning">Update</a> 
-									<a
+									class="vprod-btn vprod-btn-warning">Update</a> <a
 									href="deleteAndUpdateProductServlet?action=delete&id=<%=product.getpId()%>"
 									class="vprod-btn vprod-btn-danger">Delete</a>
-
 							</div>
 						</td>
 					</tr>
@@ -311,10 +320,6 @@ body.vprod-body {
 		</div>
 
 	</div>
-
-
-
-	
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>

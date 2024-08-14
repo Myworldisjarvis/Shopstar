@@ -1,5 +1,8 @@
 package com.shopstar.dao;
 
+import javax.transaction.SystemException;
+import javax.transaction.Transaction;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -35,6 +38,24 @@ public class UserDao {
 			return user;
 		}
 		
+		//user by id 
+
+	    public User getUserById(int userId) throws IllegalStateException, SystemException {
+	        User user = null;
+	        Transaction tx =null;
+	        Session session = null ;
+	        try {
+	        	session = this.factory.openSession();
+				 tx = (Transaction) session.beginTransaction();
+	            user = session.get(User.class, userId);
+	            tx.commit();
+	            session.close();
+	        } catch (Exception e) {
+	            if (tx != null) tx.rollback();
+	            e.printStackTrace();
+	        }
+	        return user;
+	    }
+	}
 		
-		
-}
+

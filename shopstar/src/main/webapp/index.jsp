@@ -164,10 +164,41 @@ body {
     background-color: #d1ecf1; /* Light blue background */
 }
 
+/* about hader image */
+.about-header {
+	/* background-image: url('https://via.placeholder.com/1200x500'); */
+	background-image: url('img/products/banner.jpg');
+	background-size: cover;
+	background-position: center;
+	color: white;
+	padding: 100px 0;
+	text-align: center;
+}
+
+.about-header h1 {
+	font-size: 3.5rem;
+	font-weight: bolder;
+	margin-bottom: 20px;
+}
+
+.about-header p {
+	font-size: 1.2rem;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+
 </style>
 </head>
 <body>
 	<%@include file="components/navbar.jsp"%>
+
+	<!-- About Header -->
+	<header class="about-header">
+		<h1>Welcome to ShopStar</h1>
+		<p>Your trusted destination for quality products, exceptional
+			service, and unbeatable prices.</p>
+	</header>
 
 	<div class="container-fluid">
 		<div class="row mt-3 mx-2">
@@ -286,7 +317,7 @@ body {
 	</div>
 
 	<%@include file="components/common_modals.jsp"%>
-
+	<%@include file="components/footer.jsp"%>
 	<!-- script -->
 </body>
 </html>

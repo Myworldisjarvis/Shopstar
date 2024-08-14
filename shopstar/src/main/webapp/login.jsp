@@ -59,6 +59,7 @@
                 </div>
                 <div class="card-body">
                     <%@include file="components/message.jsp" %>
+                      
                     <form action="LoginServlet" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
@@ -83,6 +84,6 @@
         </div>
     </div>
 </div>
-
+<%@include file="components/common_modals.jsp"%>
 </body>
 </html>

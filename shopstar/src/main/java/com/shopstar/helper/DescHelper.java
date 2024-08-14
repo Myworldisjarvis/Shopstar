@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 
 public class DescHelper {
 
+	
 //	break the discription in 10 words and show
 	public static String get10Words(String desc) {
 		
@@ -16,8 +17,8 @@ public class DescHelper {
 		if (strs.length > 10) {
 			String res = "";
 			for(int i = 0 ; i<10 ; i++ ) {
-				res = res + strs[i] +" ";	
-			}
+				res = res + strs[i] +" ";  
+				}
 			return (res+"...");	
 		}
 			

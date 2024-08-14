@@ -97,11 +97,8 @@ public class ProductOperationServlet extends HttpServlet {
 			ProductDao pDao = new ProductDao(FactoryProvide.getFactory());
 			pDao.saveProduct(p);
 
-//		C://Users//names//git//Shopstar//shopstar//src//main//webapp//img//products
-//		/shopstar/src/main/webapp/img/products
 
-			String uploadPath = getServletContext().getRealPath("") + File.separator + "img" + File.separator
-					+ "products";
+			String uploadPath = getServletContext().getRealPath("") + File.separator + "img" + File.separator+ "products";
 			File uploadDir = new File(uploadPath);
 			if (!uploadDir.exists())
 				uploadDir.mkdir();
