@@ -20,10 +20,10 @@
             <!-- Contact Info -->
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                 <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
-                <p><i class="fas fa-home mr-3"></i> 123 Main Street, Anytown, USA</p>
+                <p><i class="fas fa-home mr-3"></i> 08 Indore , MP </p>
                 <p><i class="fas fa-envelope mr-3"></i> info@shopstar.com</p>
-                <p><i class="fas fa-phone mr-3"></i> +1 234 567 890</p>
-                <p><i class="fas fa-print mr-3"></i> +1 234 567 891</p>
+                <p><i class="fas fa-phone mr-3"></i> +91 798 783 7245</p>
+                <p><i class="fas fa-print mr-3"></i> +91 777 105 6768</p>
             </div>
 
             <!-- Newsletter Subscription -->
@@ -47,7 +47,7 @@
         <div class="row align-items-center">
             <div class="col-md-7 col-lg-8">
                 <p class="text-center text-md-left">© 2024 All rights reserved by:
-                    <a href="#" class="text-warning" style="text-decoration: none;">
+                    <a href="index.jsp" class="text-warning" style="text-decoration: none;">
                         <strong> ShopStar</strong>
                     </a>
                 </p>
@@ -62,10 +62,10 @@
                             <a href="#" class="btn-floating btn-sm text-light" style="font-size: 23px;"><i class="fab fa-twitter"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#" class="btn-floating btn-sm text-light" style="font-size: 23px;"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.instagram.com/lafz_e_rooh2711/" class="btn-floating btn-sm text-light" style="font-size: 23px;"><i class="fab fa-instagram"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#" class="btn-floating btn-sm text-light" style="font-size: 23px;"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.linkedin.com/in/sadafhussain7/" class="btn-floating btn-sm text-light" style="font-size: 23px;"><i class="fab fa-linkedin-in"></i></a>
                         </li>
                     </ul>
                 </div>

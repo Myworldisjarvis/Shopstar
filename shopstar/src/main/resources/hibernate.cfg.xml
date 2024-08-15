@@ -19,6 +19,7 @@
 <mapping class="com.shopstar.entities.User" />
 <mapping class="com.shopstar.entities.Category" />
 <mapping class="com.shopstar.entities.Product" />
+<mapping class="com.shopstar.entities.Orders"/>
 
 </session-factory>
 </hibernate-configuration>

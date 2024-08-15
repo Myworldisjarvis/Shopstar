@@ -206,17 +206,17 @@ body {
 			<div class="row">
 				<div class="col-md-4 team-member">
 					<img src="https://via.placeholder.com/150" alt="Team Member">
-					<h5>John Doe</h5>
+					<h5>Sadaf Hussain</h5>
 					<p>Founder & CEO</p>
 				</div>
 				<div class="col-md-4 team-member">
 					<img src="https://via.placeholder.com/150" alt="Team Member">
-					<h5>Jane Smith</h5>
+					<h5>Sadaf Hussain</h5>
 					<p>Chief Marketing Officer</p>
 				</div>
 				<div class="col-md-4 team-member">
 					<img src="https://via.placeholder.com/150" alt="Team Member">
-					<h5>Michael Johnson</h5>
+					<h5>Sadaf Hussain</h5>
 					<p>Chief Technology Officer</p>
 				</div>
 			</div>
